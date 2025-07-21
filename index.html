@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Patrick McCaslin</title>
+    <link rel="icon" type="image/png" href="assets/third-eye-cropped.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: "Inter", sans-serif;
+            text-align: center;
+        }
+
+        #intro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            margin-top: 20vh;
+        }
+
+        #name {
+            font-weight: 800;
+            font-size: clamp(2rem, 10vw, 8rem);
+        }
+
+        #position {
+            margin-top: 0;
+            font-weight: 500;
+            font-size: clamp(1rem, 5vw, 4rem);
+        }
+
+        #button-group {
+            margin-top: 2vh;
+            display: flex;
+            gap: 0.5vw;
+        }
+
+        .button {
+            font-size: clamp(1rem, 3vw, 2rem);
+            padding: 0.5em 0.5em;
+            border-radius: 5px;
+            color: #222;
+            background: #fdfae2;
+            font-weight: 500;
+            transition: background 0.5s, font-weight 0.5s;
+            text-decoration: none;
+            box-shadow: 0 0 20px 5px rgba(253, 250, 226, 0.5);
+        }
+
+        .button:hover {
+            background: #ffd001;
+            font-weight: 700;
+        }
+
+        #construction {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 8px;
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="intro">
+            <h1 id="name">Patrick McCaslin</h1>
+            <h2 id="position"> Data journalism + visualization</h2>
+            <div id="button-group">
+                <a href="resume.html" class="button">Interactive resume</a>
+                <a href="clips.html" class="button">Clips</a>
+            </div>
+        </div>
+        <p id="construction"> 🚧 Please pardon this site's appearance. It is still under construction. 🚧</p>
+    </div>
+</body>
+
+</html>
