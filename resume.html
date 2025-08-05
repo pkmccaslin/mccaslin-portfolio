@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel="icon" type="image/png" href="assets/initials.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #resume-intro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10vh;
+            margin-left: 20vw;
+            margin-right: 20vw;
+        }
+
+        .resume-text {
+            width: 36vw;
+            font-size: clamp(0.5rem, 1vw, 1rem);
+            line-height: calc(1.5 * clamp(0.5rem, 1vw, 1rem));
+            margin-top: 1em;
+            padding: 0 2em;
+            text-align: justify;
+            align-items: center;
+        }
+
+        /* .intro-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5vw;
+            justify-content: center;
+        }
+
+        .intro-buttons button {
+            border: none;
+            font-size: clamp(1rem, 3vw, 2rem);
+            padding: 0.4em 0.4em;
+            border-radius: 5px;
+            color: #222;
+            background-color: #fdfae2;
+            font-weight: 500;
+            transition: background-color 0.5s, text-shadow 0.5s, padding 0.5s;
+            text-decoration: none;
+            box-shadow: 0 0 20px 5px rgba(253, 250, 226, 0.5);
+        }
+
+        .intro-buttons button:hover {
+            background-color: #ffd001;
+            padding-left: 0.6em;
+            padding-right: 0.6em;
+            text-shadow: 0 0 1px #222, 0 0 1px #222;
+        } */
+
+        .container {
+            position: relative;
+            font-family: "Inter", sans-serif;
+            margin: 4vh 20vw;
+            padding: 0;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            transition: background-color 0.6s ease-in-out;
+
+        }
+
+        a:hover {
+            border-radius: 4px;
+            background: #ffd001;
+            padding: 2px 0;
+            text-decoration: underline;
+            transition: background-color 0.6s ease-in-out;
+
+        }
+
+        h1 {
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        #contact-info {
+            margin: 8px 0;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 8px 0;
+            border-radius: 5px;
+            background-color: #fdfae2;
+
+            padding: 0.2em;
+        }
+
+        .accordion h2 {
+            cursor: pointer;
+            transition: background-color 0.4s ease-in-out;
+        }
+
+        .accordion h2:hover {
+            transition: background-color 0.4s ease-in-out;
+            border-radius: 4px;
+            background: #ffd001;
+        }
+
+        h3 {
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        h4 {
+            margin: 0;
+            text-align: left
+        }
+
+        ul {
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 0.1em;
+            background-color: rgb(255, 255, 255);
+            font-weight: 400;
+            transition: background-color 0.4s ease-in-out;
+        }
+
+        li:hover .highlight {
+            transition: background-color 0.4s ease-in-out;
+            border-radius: 4px;
+            background: #ffd001;
+        }
+
+        .highlight {
+            transition: background-color 0.6s ease-in-out;
+            /* font-weight 0.6s ease-in-out; */
+
+        }
+
+        .position {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .date {
+            margin-left: 1em;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="resume-intro">
+        <h1>Welcome to my interactive resume!</h1>
+        <h1>I am Patrick McCaslin, a programmer who loves journalism. <br>Or perhaps a journalist who loves programming?</h1> -->
+        <!-- <div class="intro-buttons">
+            <button data-target="journalism">Journalism Experience</button>
+            <button data-target="education">Education</button>
+            <button data-target="skills">Skills & Other</button>
+        </div> -->
+    </div>
+    <h1>Patrick McCaslin</h1>
+    <p id="contact-info">Twitter <a href="https://x.com/PatrickMcCas">@patrickmccas</a> ● <a href="https://github.com/pkmccaslin">github.com/pkmccaslin</a>
+    </p>
+    <div class="container" id="resume-content">
+        <div class="accordion">
+            <h2>JOURNALISM EXPERIENCE</h2>
+            <hr>
+            <h3 class="position">Dow Jones New Fund data intern at The Baltimore Banner <span class="date">June 2025 -
+                    Aug. 2025</span></h3>
+            <ul>
+                <li>Investigated Baltimore City’s flagship violence intervention strategies <span
+                        class="highlight">using
+                        geospatial analysis and statistical modeling</span></li>
+                <li><span class="highlight">Revealed significant changes</span> in Filipino, Indian, and Korean
+                    communities
+                    <span class="highlight">using 15 years of census
+                        data</span>
+                </li>
+                <li><span class="highlight">Facilitated other journalists’ reporting</span> via PDF scraping, census
+                    analysis, visualization, and analysis of large datasets</li>
+                <li>Investigated the statewide correlation between standardized test scores and income levels in
+                    Maryland
+                </li>
+            </ul>
+            <h3 class="position">Freelancer for Miami New Times, Miami, FL <span class="date">Jan. 2024 - Present</span>
+            </h3>
+            <ul>
+                <li>Created an <span class="highlight">interactive choropleth map</span> of how 700+ Miami-Dade
+                    precincts
+                    voted in the 2024 general
+                    election</li>
+                <li>Pitched and reported stories covering Miami-Dade’s hot button political issues <span
+                        class="highlight">for 1,000,000 monthly
+                        readers</span>
+                </li>
+                <li>Covering multiple longform investigations into Miami-Dade and Florida government failings</li>
+            </ul>
+
+            <h3 class="position">The Miami Hurricane, Miami, FL <span class="date">Aug. 2021 - May 2025</span></h3>
+            <h4>News reporter, news editor, business manager</h4>
+            <ul>
+                <li>Won <span class="highlight">national reporting awards,</span> including: <span class="highlight">ACP
+                        Pacemaker Story of the Year, 5th;</span> CMA Best Crisis
+                    Coverage,
+                    2nd; Apple Award Best Crisis Coverage, 2nd; Sunshine State Awards Breaking News, 3rd; ACP Best of
+                    Show:
+                    DEI
+                    reporting, 6th; twice received ACP Clips & Clicks Feature Story Hon. Mentions</li>
+                <li>Broke an investigative story that was later <span class="highlight">picked up by national
+                        media,</span>
+                    such as Insider and the Miami
+                    Herald</li>
+                <li>Wrote <span class="highlight">one to three stories per week</span> in news, including <span
+                        class="highlight">data-driven stories,</span> features, breaking news,
+                    investigations, profiles, reporting on artificial intelligence, and Florida politics</li>
+                <li>Increased the output of the campus and city news section to nearly daily publication as news editor
+                </li>
+                <li>Oversaw and co-created the UM News Briefs section of The Miami Hurricane to cover Miami-based news
+                </li>
+                <li>As business manager, recruited 20 people to the sales team; created media kit, rate card and sales
+                    tracking
+                    documents; expanded distribution to 10 new locations and <span class="highlight">sold $38,000 of
+                        advertisements;</span> managed
+                    printing
+                </li>
+            </ul>
+            <h3 class="position">Editorial intern at Coral Gables Magazine, Coral Gables, FL <span class="date">Sept.
+                    2024 -
+                    Jan. 2025</span></h3>
+            <ul>
+                <li>Published a 2,500+ word investigation into Iron Arrow, Miami’s most controversial honor society</li>
+                <li>Reviewed food, wrote long and short form features and profiles for a print circulation of
+                    22,000/month
+                </li>
+            </ul>
+
+            <h3 class="position">Special projects intern at WSVN Channel 7, Miami, FL <span class="date">May 2023 - Aug.
+                    2023</span></h3>
+            <ul>
+                <li>Co-produced one feature story and one investigative story <span class="highlight">for a #18
+                        market</span></li>
+                <li>Conducted followup investigations on <span class="highlight">5+ tips each day</span> to assist
+                    special projects producers</li>
+                <li>Shadowed nearly every department to learn news-gathering and production processes</li>
+            </ul>
+
+            <h3 class="position">Writer at Impact.Edition, Miami, FL <span class="date">April 2023 - Present</span></h3>
+            <ul>
+                <li>Wrote feature stories on the overhaul of Florida’s education system and social justice <span
+                        class="highlight">in service to
+                        Miamians</span></li>
+            </ul>
+
+            <h3 class="position">Assistant writer for “An Investigation into the Use of Facial Recognition”, Coral
+                Gables, FL <span class="date">Sept. 2021 - Dec. 2021</span></h3>
+            <ul>
+                <li>Reported and wrote for a multimedia project <span class="highlight">exposing the University of
+                        Miami’s
+                        secret use of facial
+                        recognition</span></li>
+            </ul>
+        </div>
+        <div class="accordion">
+            <h2>EDUCATION</h2>
+            <hr>
+            <h3 class="education">University of Miami Coral Gables, FL<span class="date">Aug. 2021 - May 2025</span>
+            </h3>
+            <ul>
+                <li>Bachelor of Arts in <span class="highlight">Computer Science</span>, Bachelor of Science in <span
+                        class="highlight">Mathematics</span>,<br> Bachelor of Arts in <span class="highlight">Political
+                        Science</span></li>
+                <li>Minor in Economics, Coursework in <span class="highlight">data visualization</span></li>
+                <li>GPA: 3.79/4.0</li>
+                <li>Honors: Singer Scholar <span class="highlight">(fully paid tuition)</span>; Omicron Delta Kappa
+                    Honor
+                    Society</li>
+            </ul>
+        </div>
+        <div class="accordion">
+            <h2>SKILLS AND OTHER DETAILS</h2>
+            <hr>
+            <h3 class="extra">Skills</h3>
+            <ul>
+                <li>R: sf, TidyCensus, Tidyverse, Lubridate, ellmer</li>
+                <li>Python: Pandas, BeautifulSoup</li>
+                <li>Research methods: Synthetic control group, Kernel density estimation, Spatial interpolation</li>
+                <li>Visualization: Flourish, Datawrapper, Adobe Illustrator, Figma, ggplot2 and Mapview</li>
+                <li>Very comfortable using: HTML/CSS/JS, Excel, Git, Tabula, Quarto, Markdown</li>
+                <li>Comfortable using: C, Java, QGIS, terminal, D3</li>
+            </ul>
+
+            <h3 class="extra">Languages</h3>
+            <ul>
+                <li>Conversational in Spanish and French</li>
+            </ul>
+
+            <h3 class="extra">Other</h3>
+            <ul>
+                <li>Member of Investigative Reporters and Editors and attended IRE25 in New Orleans.</li>
+                <li>Coached on the SF package in R at Baltimore’s Data Day conference, held at the University of
+                    Baltimore.
+                </li>
+                <li>Contributed to the Washington Post reporting on Trump’s June 2023 initial hearing.</li>
+                <li>~2000 hours of tutoring students at all levels of education up to undergraduate.</li>
+                <li>Salsa aficionado.</li>
+            </ul>
+
+            <h3 class="extra">Ask me about</h3>
+            <ul>
+                <li>La Haine (movie), Plain Jane (song), Van Gogh (the artist), The Overstory (book)</li>
+            </ul>
+        </div>
+    </div>
+    <script src="resume-scripts/accordion.js"></script>
+</body>
+
+</html>
