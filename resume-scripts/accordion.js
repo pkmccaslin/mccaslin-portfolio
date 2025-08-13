@@ -1,18 +1,53 @@
-// takes document object and applies this to all h2 elements within class .accordion
-// each of these will be called the variable "header"
-document.querySelectorAll('.accordion h2').forEach(header => {
-    // header will have style cursor
-    header.style.cursor = "pointer";
-    // add click event listener
-    header.addEventListener('click', function() {
-        // define sibling as next element that's the same as the current one
-        let sibling = header.nextElementSibling;
-        // boolean of 
-        let isOpen = sibling && sibling.style.display !== "none";
-        // Hide all siblings until next h2
-        while (sibling && sibling.tagName !== "H2") {
-            sibling.style.display = isOpen ? "none" : "";
-            sibling = sibling.nextElementSibling;
+// select all of my resume-box which each has an id such as experience, education, or skills
+const buttons = document.querySelectorAll('.resume-box');
+
+// for each of those resume-box do the following
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+
+        // buttons.forEach(box => {
+        //     if (box.className !== 'hidden'){
+        //         box.classList.add('hidden');
+        //     }
+        // });
+
+        // define targetId as (for example) experience-hidden
+        // this is the id of the content below
+        const targetID = button.id + '-hidden';
+        // targetElement is then retrieved from below
+        const targetElement = document.getElementById(targetID);
+
+        const allContentBoxes = document.querySelectorAll('.content')
+
+        allContentBoxes.forEach(box => {
+            if (box.id !== targetID && !box.classList.contains('hidden')) {
+                box.classList.add('hidden'); // Add 'hidden' class to hide it
+            }
+        });
+
+        if (targetElement) {
+
+
+            const isNowHidden = targetElement.classList.toggle('hidden');
+
+            // If the element just became visible (i.e., it was not hidden previously)
+            // then scroll to it.
+            if (!isNowHidden) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
         }
-    });
-});
+
+
+        // const hiddenContent = document.querySelectorAll('.resume-box');
+        // hiddenContent.forEach(box => {
+        //     if (box.id !== targetID && !box.classList.contains('hidden')) {
+        //         box.classList.add('hidden')
+        //     }
+        // })
+        // if (targetElement) {
+        //     targetElement.classList.toggle('hidden')
+        // }
+    })
+})
+
