@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clips</title>
+    <link rel="icon" type="image/png" href="assets/initials.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+      }
+
+      a {
+        display: inline-block;
+        width: fit-content;
+        text-decoration: none;
+        color: black;
+      }
+
+      h1 {
+        margin: 0;
+        padding: 0;
+      }
+
+      h2 {
+        margin: 0;
+        padding: 0;
+      }
+
+      h3 {
+        margin: 0;
+        padding: 0;
+      }
+
+      .clips-container {
+        position: relative;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+      }
+
+      .clip {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        scroll-snap-align: start;
+      }
+
+      .publication-name-container {
+        scroll-snap-align: start;
+        padding-top: 2vh;
+        width: 100%;
+      }
+
+      .publication-name {
+        font-size: clamp(2.4rem, 5.6rem, 5.6rem);
+        letter-spacing: 0.4rem;
+        align-items: flex-start;
+        text-align: center;
+        padding: 0;
+        color: white;
+        margin: 0;
+      }
+
+      .banner {
+        background-color: black;
+      }
+
+      .miami-new-times {
+        background-color: #ee1f2a;
+      }
+
+      .article-title-container {
+        padding: 0;
+        width: 100%;
+      }
+
+      .article-title {
+        font-size: clamp(1.6rem, 8vw, 3.2rem);
+        text-align: left;
+        color: white;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80vw;
+        max-width: 1200px;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+      }
+
+      .article-assets {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 4vw;
+        margin-top: 2vh;
+        margin-bottom: 4vh;
+      }
+
+      .article-embed,
+      .code-embed {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 40vw;
+        max-width: 500px;
+      }
+
+      .flag,
+      .article-teaser {
+        background-color: white;
+        border: 1.5px solid black;
+        text-align: left;
+        padding-left: 4px;
+        padding-right: 4px;
+        margin: 0;
+        width: fit-content;
+      }
+
+      .flag {
+        /* position: relative;
+        top: 0; */
+        display: inline;
+        font-size: clamp(1rem, 1.4rem, 1.8rem);
+        font-weight: 600;
+        border-bottom: 0;
+        font-weight: 500;
+        transition: background-color 0.5s, font-weight 0.5s;
+      }
+
+      .article-teaser {
+        font-size: clamp(0.4rem, 0.8rem, 1.2rem);
+        border-top: 0;
+        padding-bottom: 8px;
+        box-sizing:border-box;
+        width: 100% !important
+      }
+
+      .caption {
+        font-style: italic;
+        color: grey;
+        font-size: clamp(0.2rem, 0.6rem, 1rem);
+      }
+
+      .lede-art {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        border: 1.5px solid black;
+      }
+
+      .language-r {
+        margin: 0;
+      }
+
+      .article-description {
+        flex-grow: 1;
+        max-width: 700px;
+        font-size: clamp(0.6rem, 1rem, 1.4rem);
+        /* font-size: clamp(0.4rem, 0.8rem, 1.2rem); */
+        line-height: calc(1.25 * clamp(0.6rem, 1rem, 1.4rem));
+        text-align: justify;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="clips-container">
+      <div class="publication-name-container banner">
+        <h1 class="publication-name">THE BALTIMORE BANNER</h1>
+      </div>
+      <!-- <div id ="landing">
+            <p id="intro-text">
+                I began writing 
+            </p>
+        </div> -->
+      <div class="clip" id="blair-witch">
+        <div class="article-title-container banner">
+          <h2 class="article-title">
+            How ‘The Blair Witch Project’ birthed a terrifying film subgenre in
+            Maryland
+          </h2>
+        </div>
+        <div class="article-assets">
+          <div
+            class="article-embed"
+            data-link="../story-dupes/blair-witch.html"
+          >
+            <h3 class="flag">Read:</h3>
+            <img
+              class="lede-art"
+              src="../assets/blair-witch-project-lede-art.png"
+              alt="Article headline, titled 'How ‘The Blair Witch Project’ birthed a terrifying film subgenre in Maryland' and a lead image of Eduardo Sanchez walking in the forest where 'The Blair Witch Project was filmed'"
+            />
+            <div class="article-teaser">
+              <span class="caption"
+                >Image credit: Courtesy of Eduardo Sanchez.</span
+              ><br />
+              Found-footage horror films exploded in popularity after the
+              release of Maryland-made “The Blair Witch Project,” according to a
+              Banner analysis of over 4,000 horror movies.
+            </div>
+          </div>
+
+          <div
+            class="code-embed"
+            data-link="https://github.com/pkmccaslin/horror_movies"
+          >
+            <h3 class="flag">See the code:</h3>
+            <pre
+              data-src="../assets/horror-movie-analysis.R"
+              class="language-r"
+            ></pre>
+          </div>
+        </div>
+        <p class="article-description">
+          What is a Maryland horror movie? There are 60 of them set in the state
+          according to an extensive database compiled by a Reddit user. Those
+          range from the wildly popular "The Blair Witch Project" to some very
+          small productions. I used OpenAI's large language model GPT 4.1 to
+          classify key characteristics of these 4,000+ horror films, identifying
+          subgenre, setting and characteristics of the protagonist. This allowed
+          me to identify a spike in the horror subgenres of found footage,
+          backwoods, and isolation.
+          <br /><br />
+          <!-- Check out the viz for the story <a href="viz.html">here</a>. -->
+        </p>
+      </div>
+      <div class="clip" id="loud-noises">
+        <div class="article-title-container banner">
+          <h2 class="article-title">
+            Just how loud are those Locust Point ships? We visited some other
+            noisy spots to find out.
+          </h2>
+        </div>
+        <div class="article-assets">
+          <div
+            class="article-embed"
+            data-link="../story-dupes/loud-noises.html"
+          >
+            <h3 class="flag">Read:</h3>
+            <img
+              class="lede-art"
+              src="../assets/loud-noises-lede-art.png"
+              alt="A pair of huge Navy ships, the USNS Charlton, left, and the USNS Pomeroy, are docked near residential homes at North Locust Point on June 5."
+            />
+            <div class="article-teaser">
+              <span class="caption"
+                >A pair of huge Navy ships, the USNS Charlton, left, and the
+                USNS Pomeroy, are docked near residential homes at North Locust
+                Point on June 5. (Jerry Jackson/The Banner)</span
+              ><br />The plight of Locust Point residents who must live with
+              constant noise from two military cargo ships got us wondering: How
+              does the racket there compare to other noisy spots?
+            </div>
+          </div>
+        </div>
+        <p class="article-description">
+          At the top of the summer, the federal government parked two military
+          ships outside of Locust Point homes. Those ships ran off of a
+          generator which emitted a din of 70 dB, constantly. My reporting
+          partner wrote a series of stories about the impact of the noise
+          pollution on residents prior to us collaborating to quantify just how
+          bad it was. We visited the noisiest areas around Baltimore, measured
+          the sound level, then compared them to the experience of Locust Point
+          residents. We discovered that Locust Point residents were experiencing
+          the loudest continuous noise of residential zones in the city.
+          <br /><br />
+          <!-- Check out the viz for the story <a href="viz.html">here</a>. -->
+        </p>
+      </div>
+      <div class="clip" id="korean-indian-hoco">
+        <div class="article-title-container banner">
+          <h2 class="article-title">
+            Indian families find home in historic Korean community
+          </h2>
+        </div>
+        <div class="article-assets">
+          <div
+            class="article-embed"
+            data-link="../story-dupes/indian-korean-hoco.html"
+          >
+            <h3 class="flag">Read:</h3>
+            <img
+              class="lede-art"
+              src="../assets/indian-korean-hoco-lede-art.png"
+              alt="Article titled 'Indian families add new spice to Howard County’s ‘Koreatown’ corridor' and a lead image of Swapna Raina who has called Howard County home for more than twenty years.'"
+            />
+            <div class="article-teaser">
+              <span class="caption"
+                >Image credit: Jerry Jackson/The Baltimore Banner.</span
+              ><br />The number of Howard County’s Indian residents has more
+              than doubled since 2009, now accounting for 6.7% of the county’s
+              total population.
+            </div>
+          </div>
+
+          <div
+            class="code-embed"
+            data-link="https://github.com/The-Baltimore-Banner/howard-county-asian-pop"
+          >
+            <h3 class="flag">See the code:</h3>
+            <pre
+              data-src="../assets/indian-korean-hoco.R"
+              class="language-r"
+            ></pre>
+          </div>
+        </div>
+        <p class="article-description">
+          Koreans were once Howard County’s predominant Asian group, making up
+          an estimated 3.6% of its residents in 2009. But over the past 15
+          years, the census tracts that former Gov. Larry Hogan and others long
+          identified with Korean residents and businesses have seen that
+          population dwindle while the Indian population surged.
+          <br /><br />
+          <!-- Check out the viz for the story <a href="viz.html">here</a>. -->
+        </p>
+      </div>
+      <div class="clip" id="moco-immigration">
+        <div class="article-title-container banner">
+          <h2 class="article-title">
+            Census data shows Montgomery County has one of the largest
+            proportions of immigrants in US
+          </h2>
+        </div>
+        <div class="article-assets">
+          <div
+            class="article-embed"
+            data-link="../story-dupes/moco-immigration.html"
+          >
+            <h3 class="flag">Read:</h3>
+            <img
+              class="lede-art"
+              src="../assets/moco-immigration-lede-art.png"
+              alt="An outline of Montgomery County, Maryland overlaid on an image of people at a market."
+            />
+            <div class="article-teaser">
+              <span class="caption"
+                >(Ariel Zambelich/The Banner; Original photos by Jerry
+                Jackson/The Banner)</span
+              ><br />In 2024, more than 1 in every 3 county residents was born
+              outside the U.S. That ranks 15th out of 841 counties included in
+              census data.
+            </div>
+          </div>
+
+          <div
+            class="code-embed"
+            data-link="https://github.com/pkmccaslin/moco_immigration"
+          >
+            <h3 class="flag">See the code:</h3>
+            <pre
+              data-src="../assets/moco-immigration.R"
+              class="language-r"
+            ></pre>
+          </div>
+        </div>
+        <p class="article-description">
+          On breaking deadline, a reporter and I mined 2024 ACS 1-year data for
+          story ideas on Montgomery County, MD. We explored census tables
+          relating to affordability, higher education, race, and federal workers
+          before eventually focusing on the foreign born population. We found
+          that Montgomery County has one of the largest shares of immigrants in
+          the country, even topping Manhattan, NY.
+          <br /><br />
+          <!-- Check out the viz for the story <a href="viz.html">here</a>. -->
+        </p>
+      </div>
+      <div class="clip" id="baltimore-somerset-mcap">
+        <div class="article-title-container banner">
+          <h2 class="article-title">
+            Breaking coverage on Maryland state test scores release
+          </h2>
+        </div>
+        <div class="article-assets">
+          <div
+            class="article-embed"
+            data-link="../story-dupes/baltimore-mcap.html"
+          >
+            <h3 class="flag">Read about Baltimore:</h3>
+            <img
+              class="lede-art"
+              src="../assets/baltimore-lede-art.png"
+              alt=""
+            />
+            <div class="article-teaser">
+              <span class="caption"
+                >(Yifan Luo for The Banner; Original photos by Getty
+                Images)</span
+              ><br />When it comes to literacy rate improvements, many Baltimore
+              City Public Schools take the top prize.
+            </div>
+          </div>
+          <div
+            class="article-embed"
+            data-link="../story-dupes/somerset-mcap.html"
+          >
+            <h3 class="flag">Read about Somerset:</h3>
+            <img
+              class="lede-art"
+              src="../assets/somerset-lede-art.png"
+              alt=""
+            />
+            <div class="article-teaser">
+              <span class="caption"
+                >(Ariel Zambelich/The Banner; Original photos by Getty
+                Images)</span
+              ><br />Though making strides in English, Somerset County was one
+              of the worst at improving math.
+            </div>
+          </div>
+        </div>
+        <p class="article-description">
+          On breaking deadline, the data team worked together to clean embargoed
+          Maryland state test score data then provide the education team with
+          data findings. I acted as a backstop for the team's initial cleaning
+          and pulled data findings for Baltimore City and Somerset counties.
+          <br /><br />
+          <!-- Check out the viz for the story <a href="viz.html">here</a>. -->
+        </p>
+      </div>
+      <div class="publication-name-container miami-new-times">
+        <h1 class="publication-name">MIAMI NEW TIMES</h1>
+      </div>
+      <div class="clip" id="mdc-24-pres">
+        <div class="article-title-container miami-new-times">
+          <h2 class="article-title">
+            Election 2024 Map: Did Your Miami Neighborhood Vote Red or Blue for
+            President?
+          </h2>
+        </div>
+        <div class="article-assets">
+          <div
+            class="article-embed"
+            data-link="https://www.miaminewtimes.com/news/map-how-your-miami-neighbors-voted-in-the-2024-presidential-election-21712867/"
+          >
+            <h3 class="flag">Read:</h3>
+            <img
+              class="lede-art"
+              src="../assets/mdc-24-election-lede-art.png"
+              alt=""
+            />
+            <div class="article-teaser">
+              <span class="caption">Patrick McCaslin/Miami New Times</span
+              ><br />Miami voters were split along lines of income, race, and country of origin.
+            </div>
+          </div>
+        </div>
+        <p class="article-description">
+          This map was my first foray into data journalism. I cleaned the data
+          by hand in Excel and created the maps in Flourish. I was able to add
+          details by importing maps of Miami-Dade County roads, cutting out the
+          ocean using QGIS, and adding points that corresponded to different
+          neighborhoods and landmarks in Miami.
+        </p>
+      </div>
+    </div>
+    <script src="../js/prism.js"></script>
+    <script>
+      const article_assets = document.querySelectorAll(".article-assets");
+
+      function updateCodeBlockHeight() {
+        article_assets.forEach((asset) => {
+          const article_embed = asset.querySelector(".article-embed");
+          const code_embed = asset.querySelector(".code-embed");
+          const article_embed_height =
+            article_embed.getBoundingClientRect().height;
+          if (code_embed) {
+            code_embed.style.height = `${article_embed_height}px`;
+          }
+        });
+      }
+
+      updateCodeBlockHeight();
+
+      window.addEventListener("resize", updateCodeBlockHeight);
+    </script>
+    <script>
+      const articles = document.querySelectorAll(".article-embed");
+      articles.forEach((article) => {
+        const flag = article.querySelector(".flag");
+        const url = article.dataset.link;
+
+        const children = article.querySelectorAll(
+          ".flag, .lede-art, .article-teaser"
+        );
+        children.forEach((child) => {
+          child.addEventListener("mouseenter", () => {
+            flag.style.backgroundColor = "#ffd001";
+            flag.style.transition = "background-color 0.5s";
+            flag.style.fontWeight = "700";
+            child.style.cursor = "pointer";
+          });
+
+          child.addEventListener("mouseleave", () => {
+            flag.style.backgroundColor = "#ffffff";
+            flag.style.fontWeight = "500";
+          });
+
+          child.onclick = () => {
+            window.open(url, "_blank", "noopener,noreferrer");
+          };
+        });
+      });
+
+      const codes = document.querySelectorAll(".code-embed");
+
+      codes.forEach((code) => {
+        const flag = code.querySelector(".flag");
+        const url = code.dataset.link;
+
+        const children = code.querySelectorAll(".flag, .language-r");
+        children.forEach((child) => {
+          child.addEventListener("mouseenter", () => {
+            flag.style.backgroundColor = "#ffd001";
+            flag.style.transition = "background-color 0.5s";
+            flag.style.fontWeight = "700";
+            child.style.cursor = "pointer";
+          });
+
+          child.addEventListener("mouseleave", () => {
+            flag.style.backgroundColor = "#ffffff";
+            flag.style.fontWeight = "500";
+          });
+
+          child.onclick = () => {
+            window.open(url, "_blank", "noopener,noreferrer");
+          };
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      h2,
+      h3 {
+        margin: 10px;
+        font-size: 18px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+
+      p {
+        margin: 10px;
+      }
+
+      /**
+* Create a position for the map
+* on the page */
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+      /**
+* Set rules for how the map overlays
+* (information box and legend) will be displayed
+* on the page. */
+      .map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #fff;
+        margin-right: 20px;
+        font-family: Arial, sans-serif;
+        overflow: auto;
+        border-radius: 3px;
+      }
+
+      #features {
+        top: 0;
+        height: 100px;
+        margin-top: 20px;
+        width: 250px;
+      }
+
+      #legend {
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0 0 0 0.1);
+        line-height: 18px;
+        height: 150px;
+        margin-bottom: 40px;
+        width: 100px;
+      }
+
+      .legend-key {
+        display: inline-block;
+        border-radius: 20%;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
+    </style>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div class="map-overlay" id="features">
+      <h2>US population density</h2>
+      <div id="precinct_name"><p>Hover over a state!</p></div>
+    </div>
+    <div class="map-overlay" id="legend"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoicGttY2Nhc2xpbiIsImEiOiJjbWhtZWdtdzkyOHBsMm9xMGlocGc5ZXA2In0.S4U1Axj6aAe3RhpaMj2dyA";
+
+      const map = new mapboxgl.Map({
+        container: "map", // container id
+        style: "mapbox://styles/pkmccaslin/cmhmepqxw006u01qfafe067yr", // replace this with your style URL
+        center: [-80.214533, 25.782519],
+        // maxBounds: [
+        //   [-80.290726, 25.866359],
+        //   [-80.077336, 25.633064],
+        // ]
+      });
+
+      map.on("load", () => {
+        const layers = ["0-12.5", "12.5-25", "25-50", "50-75", "75-100"];
+        const colors = [
+          "#e7eafe",
+          "#bbc3fc",
+          "#8f9dfa",
+          "#6377f8",
+          "#2742f5",
+          "#0b2af4",
+        ];
+
+        const legend = document.getElementById("legend");
+
+        layers.forEach((layer, i) => {
+          const color = colors[i];
+          const item = document.createElement("div");
+          const key = document.createElement("span");
+          key.className = "legend-key";
+          key.style.backgroundColor = color;
+
+          const value = document.createElement("span");
+          value.innerHTML = `${layer}`;
+          item.appendChild(key);
+          item.appendChild(value);
+          legend.appendChild(item);
+        });
+
+        map.on("mousemove", (event) => {
+          console.log(map.getStyle().layers.map((l) => l.id));
+          const precincts = map.queryRenderedFeatures(event.point, {
+            layers: ["miami-mayor"],
+          });
+
+          document.getElementById("precinct_name").innerHTML = precincts.length
+            ? `<h3>${precincts[0].properties.name}</h3><p><strong><em>${precincts[0].properties.ken_russell}</strong> people per square mile</em></p>`
+            : `<p>Hover over a state!</p>`;
+        });
+
+        map.getCanvas().style.cursor = "default";
+
+        map.fitBounds([
+          [-80.290726, 25.866359],
+          [-80.077336, 25.633064],
+        ]);
+      });
+    </script>
+  </body>
+</html>

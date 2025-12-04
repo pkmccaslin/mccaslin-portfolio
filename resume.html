@@ -12,7 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <style>
-        #resume-total {
+
+        #resume-total { 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -27,9 +28,10 @@
             stroke-dasharray:4,2;
         }
 
+        /* bounce animation (by translating up and down) with a slight pause in between */
         @keyframes bounceSlightly {
-            5%, 95% { transform: translateY(0); } /* Start and end at original position */
-            50% { transform: translateY(20px); } /* Move slightly up */
+            5%, 95% { transform: translateY(0); } 
+            50% { transform: translateY(20px); }
         }
 
         #bouncing-page {
@@ -38,21 +40,25 @@
             transition: transform 0.2s ease-out;
         }
 
+        /* Stop bouncing when clicked on */
         #bouncing-page:hover {
             transform: translateY(20px);
             animation-play-state: paused;
         }
 
+        /* Highlight certain words in the resume */
         .resume-box:hover {
             transition: fill 0.4s ease-in-out;
             fill: #ffd001;
             cursor: pointer;
         }
 
+        /* Content that I want to show should take up at least the entire viewport */
         .content {
             min-height: 100vh;
         }
 
+        /* Mechanism to hide text */
         .hidden {
             display: none;
         }
@@ -64,6 +70,7 @@
             padding: 0;
         }
 
+        /* Want links to highlight by showing a background color */
         a {
             color: black;
             text-decoration: none;
@@ -153,19 +160,16 @@
             white-space: nowrap;
         }
 
-        #desk {}
-
-        #background {}
-
-        #bouncing-page {}
     </style>
 </head>
 
 <body>
     <div id="resume-total">
+        <!-- Desk SVG -->
         <svg width="1134" height="648" viewBox="0 0 1134 648" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect id="background" x="2.5" y="2.5" width="1129" height="643" fill="#B27E2A" stroke="#764E0D"
-                stroke-width="5" />
+            <!-- <rect id="background" x="2.5" y="2.5" width="1129" height="643" fill="#B27E2A" stroke="#764E0D"
+                stroke-width="5" /> -->
+            <image href="../assets/wooden_desktop.png" x="2.5" y="2.5" width="1129" height="643" />
             <rect x="347.858" y="97.0796" width="317" height="415" rx="9.5" transform="rotate(-3 347.858 97.0796)"
                 fill="white" stroke="black" />
             <g filter="url(#filter0_d_8_2)">
@@ -180,6 +184,7 @@
                 <rect x="369.525" y="111.116" width="317" height="415" rx="9.5" transform="rotate(-3 369.525 111.116)"
                     stroke="black" />
             </g>
+            <!-- Makes whole resume page bounce -->
             <g id="bouncing-page" filter="url(#filter2_d_8_2)">
                 <rect x="408.5" y="96.5" width="317" height="415" rx="9.5" fill="white" stroke="black" />
                 <rect class="resume-box" id="experience" x="420" y="146" width="295" height="151" rx="10"
@@ -216,10 +221,6 @@
                 <path
                     d="M452.922 260.795H466.469V261.068H452.922V260.795ZM467.945 260.795H487.126V261.068H467.945V260.795ZM488.093 260.795H489.34V261.068H488.093V260.795Z"
                     fill="black" />
-                <a
-                    href="https://themiamihurricane.com/2022/10/09/drugging-allegations-misogynistic-chanting-sigep-chapter-closes-immediately/">
-                    <rect fill="black" fill-opacity="0" x="23.9219" y="70.0795" width="36.418" height="4.84091" />
-                </a>
             </g>
             <g filter="url(#filter4_d_8_2)">
                 <rect x="163" y="256.246" width="90" height="90" transform="rotate(-13 163 256.246)" fill="#FFF428" />
@@ -293,23 +294,28 @@
         </svg>
     </div>
 
+    <!-- Place to show resume content (below the desk) -->
     <div class="container" id="resume-content">
+        <!-- Initially hide resume -->
         <div class="content hidden" id="experience-hidden">
             <h2>JOURNALISM EXPERIENCE</h2>
             <hr>
-            <h3 class="position">Dow Jones New Fund data intern at The Baltimore Banner <span class="date">June 2025 -
-                    Aug. 2025</span></h3>
+            <h3 class="position">Dow Jones New Fund data intern at The Baltimore Banner, Baltimore, MD <span class="date">June 2025 -
+                    Sept. 2025</span></h3>
             <ul>
-                <li>Investigated Baltimore City’s flagship violence intervention strategies <span
-                        class="highlight">using
-                        geospatial analysis and statistical modeling</span></li>
-                <li><span class="highlight">Revealed significant changes</span> in Filipino, Indian, and Korean
-                    communities
-                    <span class="highlight">using 15 years of census
-                        data</span>
+                <li>Investigated Baltimore's flagship violence intervention strategy using rigorous<span
+                        class="highlight">
+                        quantitative research methods</span></li>
+                <li><span class="highlight">Extracted structured data</span> from 4,000+ horror movies to show the impact of "The Blair Witch Project" on horror
+                    
                 </li>
-                <li><span class="highlight">Facilitated other journalists’ reporting</span> via PDF scraping, census
-                    analysis, visualization, and analysis of large datasets</li>
+                <li>Collected and visualized noise readings around Baltimore to contextualize noise pollution in residential areas
+                    
+                </li>
+                <li>Analyzed and reported on embargoed Census and education data to <span class = "highlight">quickly generate</span> articles and visualizations
+                    
+                </li>
+                <li><span class="highlight">Facilitated other journalists’ reporting</span> via data visualization, PDF scraping and exploration of undocumented APIs</li>
                 <li>Investigated the statewide correlation between standardized test scores and income levels in
                     Maryland
                 </li>
@@ -325,7 +331,7 @@
                         class="highlight">for 1,000,000 monthly
                         readers</span>
                 </li>
-                <li>Covering multiple longform investigations into Miami-Dade and Florida government failings</li>
+                <li>Contributed to multiple longform investigations into Miami-Dade and Florida government failings</li>
             </ul>
 
             <h3 class="position">The Miami Hurricane, Miami, FL <span class="date">Aug. 2021 - May 2025</span></h3>
@@ -345,25 +351,12 @@
                 <li>Wrote <span class="highlight">one to three stories per week</span> in news, including <span
                         class="highlight">data-driven stories,</span> features, breaking news,
                     investigations, profiles, reporting on artificial intelligence, and Florida politics</li>
-                <li>Increased the output of the campus and city news section to nearly daily publication as news editor
-                </li>
-                <li>Oversaw and co-created the UM News Briefs section of The Miami Hurricane to cover Miami-based news
-                </li>
-                <li>As business manager, recruited 20 people to the sales team; created media kit, rate card and sales
-                    tracking
-                    documents; expanded distribution to 10 new locations and <span class="highlight">sold $38,000 of
-                        advertisements;</span> managed
-                    printing
-                </li>
             </ul>
             <h3 class="position">Editorial intern at Coral Gables Magazine, Coral Gables, FL <span class="date">Sept.
                     2024 -
                     Jan. 2025</span></h3>
             <ul>
-                <li>Published a 2,500+ word investigation into Iron Arrow, Miami’s most controversial honor society</li>
-                <li>Reviewed food, wrote long and short form features and profiles for a print circulation of
-                    22,000/month
-                </li>
+                <li>Published a 2,500+ word investigation into Iron Arrow, Miami's most controversial honor society</li>
             </ul>
 
             <h3 class="position">Special projects intern at WSVN Channel 7, Miami, FL <span class="date">May 2023 - Aug.
@@ -373,7 +366,6 @@
                         market</span></li>
                 <li>Conducted followup investigations on <span class="highlight">5+ tips each day</span> to assist
                     special projects producers</li>
-                <li>Shadowed nearly every department to learn news-gathering and production processes</li>
             </ul>
 
             <h3 class="position">Writer at Impact.Edition, Miami, FL <span class="date">April 2023 - Present</span></h3>
@@ -403,7 +395,7 @@
                         Science</span></li>
                 <li>Minor in Economics, Coursework in <span class="highlight">data visualization</span></li>
                 <li>GPA: 3.79/4.0</li>
-                <li>Honors: Singer Scholar <span class="highlight">(fully paid tuition)</span>; Omicron Delta Kappa
+                <li>Honors: Singer Scholar <span class="highlight">(full scholarship)</span>; Foote Fellow; Omicron Delta Kappa
                     Honor
                     Society</li>
             </ul>
@@ -413,18 +405,12 @@
             <hr>
             <h3 class="extra">Skills</h3>
             <ul>
-                <li>R: sf, TidyCensus, Tidyverse, Lubridate, ellmer</li>
-                <li>Python: Pandas, BeautifulSoup</li>
-                <li>Research methods: Synthetic control group, Kernel density estimation, Spatial interpolation</li>
-                <li>Visualization: Flourish, Datawrapper, Adobe Illustrator, Figma, ggplot2 and Mapview</li>
-                <li>Very comfortable using: HTML/CSS/JS, Excel, Git, Tabula, Quarto, Markdown</li>
-                <li>Comfortable using: C, Java, QGIS, terminal, D3</li>
-            </ul>
-
-            <h3 class="extra">Languages</h3>
-            <ul>
-                <li>Conversational in Spanish and French</li>
-            </ul>
+                <li><b>R:</b> sf, TidyCensus, Tidyverse, Lubridate, ellmer</li>
+                <li><b>Python:</b> Pandas, BeautifulSoup</li>
+                <li><b>Research methods:</b> Synthetic control, Kernel density estimation, Spatial interpolation, Matching</li>
+                <li><b>Visualization:</b> Datawrapper, Flourish, Adobe Illustrator, Figma, and Mapbox Studio</li>
+                <li><b>Other tools:</b> UNIX command line, HTML/CSS/JS, Excel, Git, D3, Markdown, C, Java, QGIS, Tabula</li>
+                <li><b>Languages:</b>Conversational in Spanish and French</li>
 
             <h3 class="extra">Other</h3>
             <ul>
@@ -442,7 +428,7 @@
                 <li>La Haine (movie), Plain Jane (song), Van Gogh (the artist), The Overstory (book)</li>
             </ul>
         </div>
-        <script src="resume-scripts/accordion.js"></script>
+        <script src="accordion.js"></script>
 </body>
 
 </html>

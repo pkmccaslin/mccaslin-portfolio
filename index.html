@@ -1,99 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Patrick McCaslin</title>
     <link rel="icon" type="image/png" href="assets/initials.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Inter", sans-serif;
-        }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+      }
 
-        .container {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-        }
+      .container {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
 
-        #intro {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 60vh;
-            margin-top: 20vh;
-        }
+      #intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+        margin-top: 20vh;
+      }
 
-        #name {
-            font-weight: 800;
-            font-size: clamp(2rem, 10vw, 8rem);
-        }
+      #name {
+        font-weight: 800;
+        font-size: clamp(2rem, 10vw, 8rem);
+      }
 
-        #position {
-            margin-top: 0;
-            font-weight: 500;
-            font-size: clamp(1rem, 5vw, 4rem);
-        }
+      #position {
+        margin-top: 0;
+        font-weight: 500;
+        font-size: clamp(1rem, 5vw, 4rem);
+      }
 
-        #button-group {
-            margin-top: 2vh;
-            display: flex;
-            flex-direction: row;
-            gap: 0.5vw;
-        }
+      #button-group {
+        margin-top: 2vh;
+        display: flex;
+        flex-direction: row;
+        gap: 0.5vw;
+      }
 
-        .button {
-            font-size: clamp(1rem, 3vw, 2rem);
-            padding: 0.5em 0.5em;
-            border-radius: 5px;
-            color: #222;
-            background-color: #fdfae2;
-            font-weight: 500;
-            transition: background-color 0.5s, font-weight 0.5s;
-            text-decoration: none;
-            box-shadow: 0 0 20px 5px rgba(253, 250, 226, 0.5);
-        }
+      /* .drop-button,
+      .button {
+        font-size: clamp(1rem, 3vw, 2rem);
+        padding: 0.5em 0.5em;
+        border-radius: 5px;
+        color: #222;
+        background-color: #fdfae2;
+        font-weight: 500;
+        transition: background-color 0.5s, font-weight 0.5s;
+        text-decoration: none;
+        box-shadow: 0 0 20px 5px rgba(253, 250, 226, 0.5);
+      } */
 
-        .button:hover {
-            background-color: #ffd001;
-            font-weight: 700;
-        }
+      .button,
+      .drop-button {
+        font-size: clamp(1rem, 3vw, 2rem);
+        padding: 0.5em 0.5em;
+        color: #222;
+        background-color: #ffffff;
+        border: 1.5px solid black;
+        font-weight: 500;
+        transition: background-color 0.5s, font-weight 0.5s;
+        text-decoration: none;
+        box-shadow: 0 0 20px 5px rgba(253, 250, 226, 0.5);
+      }
 
-        #construction {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 8px;
-            font-size: clamp(0.8rem, 2vw, 1.2rem);
-            margin: 0 auto;
-        }
+      .drop-button:hover,
+      .drop-button:focus,
+      .button:hover,
+      .button:focus {
+        background-color: #ffd001;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      #construction {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 8px;
+        font-size: clamp(0.8rem, 2vw, 1.2rem);
+        margin: 0 auto;
+      }
+
+      /* ensures dropdown content is positioned relative to .dropdown container */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* dropdown content is hidden by default (display: none) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fdfae2;
+        width: 100%;
+        overflow: auto;
+        border-radius: 5px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      /* links inside of the dropdown */
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* change color of links on hover */
+      .dropdown-content a:hover {
+        /* background: #ffd001; */
+        background-color: #ffd001;
+        font-weight: 700;
+      }
+
+      /* class to activate the dropdown when necessary */
+      .show {
+        display: block;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div id="intro">
-            <h1 id="name">Patrick McCaslin</h1>
-            <h2 id="position"> Data journalism + visualization</h2>
-            <div id="button-group">
-                <a href="resume.html"
-                    class="button">Resume</a>
-                <a href="clips.html" class="button">Clips</a>
-            </div>
+      <div id="intro">
+        <h1 id="name">Patrick McCaslin</h1>
+        <h2 id="position">Data journalism + visualization</h2>
+        <div id="button-group">
+          <a href="https://drive.google.com/file/d/1yI1xxjwIfJdmdPGcO1MKbEI3ULu2U8pf/view?usp=sharing" class="button">Resume</a>
+          <!-- <div id="clips-wrapper" class="dropdown"> -->
+            <a href="clips/data-stories.html" id="clips-button" class="drop-button">Data clips</a>
+            <!-- <div id="clips-dropdown" class="dropdown-content">
+              <a href="clips/data-stories.html">Data</a>
+              <a href="clips/viz.html">Viz</a>
+              <a>Non-data</a> -->
+            <!-- </div> -->
+          </div>
+          <!-- <a href="miami.html" class="button">Projects</a> -->
         </div>
-        <p id="construction"> 🚧 Please pardon this site's appearance. It is still under construction. 🚧</p>
+      </div>
+      <!-- <p id="construction"> 🚧 Please pardon this site's appearance. It is still under construction. 🚧</p> -->
     </div>
-</body>
+  </body>
+  <script>
+    const wrapper = document.getElementById("clips-wrapper");
+    const trigger = document.getElementById("clips-button");
+    const dropdown = document.getElementById("clips-dropdown");
 
+    wrapper.addEventListener("mouseover", () => {
+      if (!isTouchDevice()) dropdown.classList.add("show");
+    });
+
+    wrapper.addEventListener("mouseout", () => {
+      if (!isTouchDevice()) dropdown.classList.remove("show");
+    });
+
+    trigger.addEventListener("click", (e) => {
+      if (isTouchDevice()) {
+        e.preventDefault(); // stops link navigation if needed
+        dropdown.classList.toggle("show");
+      }
+    });
+
+    function isTouchDevice() {
+      return window.matchMedia("(pointer: coarse)").matches;
+    }
+  </script>
 </html>
