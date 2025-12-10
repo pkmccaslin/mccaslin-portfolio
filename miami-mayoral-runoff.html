@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Miami 2025 Mayoral Election</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/initials.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        color: black;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container {
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      ul {
+        list-style-type: circle;
+        padding-inline-start: 20px;
+      }
+
+      #landing {
+        align-self: left;
+        margin-left: 10vw;
+        margin-right: 10vw;
+        padding-top: 2vh;
+        scroll-snap-align: start;
+      }
+
+      #election-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        scroll-snap-align: start;
+        height: 100vh;
+      }
+
+      #map {
+        border: 1px solid black;
+      }
+
+      @media screen and (width <= 600px) {
+        body {
+          font-size: 14px;
+        }
+
+        #map {
+          top: 5vh;
+          width: 100%;
+          height: 90vh;
+          z-index: 0;
+        }
+
+        #tooltip {
+          position: absolute;
+          line-height: 1.2rem;
+          width: 90vw;
+          padding: 1vh 2vw 0vh 2vw;
+          z-index: 1;
+          bottom: 4vh;
+        }
+
+        #grafs-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+      }
+
+      @media screen and (width > 600px) {
+        body {
+          font-size: 16px;
+        }
+
+        #map {
+          height: 90vh;
+          width: 80vw;
+          margin-top: 5vh;
+          margin-bottom: 5vh;
+        }
+
+        #tooltip {
+          position: absolute;
+          width: 320px;
+          padding: 16px;
+          line-height: 1.4rem;
+          border-radius: 4px;
+        }
+
+        #grafs-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100vw;
+          height: 100vh;
+        }
+      }
+
+      #tooltip {
+        display: none;
+        flex-direction: column;
+        border: 1px solid black;
+        /* padding: 16px 16px; */
+        background-color: #ffffff;
+        box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.374);
+        pointer-events: none;
+      }
+
+      #precinct-name {
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-top: 10px;
+        margin-bottom: 15px;
+      }
+
+      #tooltip-header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .tooltip-header {
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .election-bar-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border: 1.5px solid black;
+      }
+
+      .election-bar {
+        height: 20px;
+      }
+
+      .median-bar {
+        align-self: center;
+        background-color: black;
+        width: 2.5px;
+        height: 8px;
+        margin-bottom: 2px;
+      }
+
+      .median-text {
+        font-size: 1.2rem;
+        align-self: center;
+        color: black;
+        margin-bottom: 8px;
+      }
+
+      #tooltip-text {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+      }
+
+      #tooltip-text tr {
+        border-top: 0.75px solid black;
+        border-bottom: 0.75px solid black;
+      }
+
+      #tooltip-text tr:first-child {
+        border-top: 0px;
+      }
+
+      #tooltip-text tr:last-child {
+        border-bottom: 0px;
+      }
+
+      #grafs-container {
+        scroll-snap-align: start;
+        background-color: rgb(255, 247, 217);
+        height: 200vh;
+      }
+
+      /* #legend {
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0 0 0 0.1);
+        line-height: 18px;
+        height: 150px;
+        margin-bottom: 40px;
+        width: 100px;
+      }
+
+      .legend-key {
+        display: inline-block;
+        border-radius: 20%;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      } */
+    </style>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div id="landing">
+        <h1 style="text-align: left">Eileen Higgins wins Miami mayor</h1>
+        <h2 style="text-align: left">
+          Higgins won 59.5% of the vote, becoming the first Democrat to be elected Miami's mayor in almost 30 years.
+        </h2>
+      </div>
+      <div id="election-container">
+        <div id="map"></div>
+        <div id="tooltip">
+          <div id="precinct-name"></div>
+          <div id="no-voter-message" class="tooltip-header" style="display: none;">No voters participated in this precinct.</div>
+          <div id="tooltip-info">
+            <div id="tooltip-header-container">
+              <div class="tooltip-header" data-attribute="higgins"></div>
+              <div class="tooltip-header" data-attribute="gonzalez"></div>
+            </div>
+            <div class="election-bar-container">
+              <div
+                class="election-bar"
+                data-attribute="higgins"
+                style="background-color: #3182bd"
+              ></div>
+              <div
+                class="election-bar"
+                data-attribute="gonzalez"
+                style="background-color: #de2d26"
+              ></div>
+            </div>
+            <div class="median-bar"></div>
+            <div class="median-text">50%</div>
+            <div id="tooltip-scroll">
+              <table id="tooltip-text"></table>
+            </div>
+          </div>
+        </div>
+        <!-- <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: absolute;
+            bottom: 0px;
+            cursor: pointer;
+          "
+          id="scroll-down"
+        >
+          <p><b>Read more below</b></p>
+          <img src="../assets/small-down-arrow.svg" style="height: 30px" />
+        </div> -->
+      </div>
+      <!-- <div id="grafs-container"></div> -->
+    </div>
+    <script>
+      // document.getElementById("scroll-down").addEventListener("click", () => {
+      //   document.getElementById("grafs").scrollIntoView({
+      //     behavior: "smooth",
+      //   });
+      // });
+    </script>
+    <script>
+      function capitalizeFirstLetter(str) {
+        if (typeof str !== "string" || str.length === 0) {
+          return str; // Handle empty strings or non-string inputs
+        }
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+      //map scripting
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoicGttY2Nhc2xpbiIsImEiOiJjbWhtZWdtdzkyOHBsMm9xMGlocGc5ZXA2In0.S4U1Axj6aAe3RhpaMj2dyA";
+
+      const width = window.innerWidth;
+      const map = new mapboxgl.Map({
+        container: "map", // container id
+        style: "mapbox://styles/pkmccaslin/cmizr73s1004001s29iyk91v1", // replace this with your style URL
+        center: [-80.214533, 25.782519],
+        zoom: 11,
+        // maxBounds: [
+        //   [-80.290726, 25.866359],
+        //   [-80.077336, 25.633064],
+        // ]
+      });
+
+      map.on("load", () => {
+        //   const layers = ["0-12.5", "12.5-25", "25-50", "50-75", "75-100"];
+        //   const colors = [
+        //     "#e7eafe",
+        //     "#bbc3fc",
+        //     "#8f9dfa",
+        //     "#6377f8",
+        //     "#2742f5",
+        //     "#0b2af4",
+        //   ];
+
+        // const legend = document.getElementById("legend");
+
+        // layers.forEach((layer, i) => {
+        //   const color = colors[i];
+        //   const item = document.createElement("div");
+        //   const key = document.createElement("span");
+        //   key.className = "legend-key";
+        //   key.style.backgroundColor = color;
+
+        //   const value = document.createElement("span");
+        //   value.innerHTML = `${layer}`;
+        //   item.appendChild(key);
+        //   item.appendChild(value);
+        //   legend.appendChild(item);
+        // });
+
+        map.on("mousemove", (event) => {
+          const tooltip = document.getElementById("tooltip");
+          const tooltipHeaderContainer = document.getElementById(
+            "tooltip-header-container"
+          );
+          let noVoterMessage = document.getElementById("no-voter-message");
+          let tooltipInfo = document.getElementById("tooltip-info");
+          const precincts = map.queryRenderedFeatures(event.point, {
+            layers: ["runoff-precincts"],
+          });
+
+          if (precincts.length > 0) {
+            tooltip.style.display = "flex";
+          } else {
+            tooltip.style.display = "none";
+          }
+
+          if (width > 600) {
+            tooltip.style.left = `calc(${event.point.x}px + 10vw + 10px)`;
+            tooltip.style.top = `calc(${event.point.y}px + 5vh + 10px)`;
+          }
+          // get precincts layer with info
+
+          let gonzalez_vote = Math.round(
+            (10 * Number(precincts[0].properties.gonzalez)) / 10
+          );
+          gonzalez_vote = gonzalez_vote === "NaN" ? "0" : gonzalez_vote;
+          let higgins_vote = Math.round(
+            (10 * Number(precincts[0].properties.higgins)) / 10
+          );
+          higgins_vote = higgins_vote === "NaN" ? "0" : higgins_vote;
+          let total_vote = Number(precincts[0].properties.precinct_total);
+          total_vote = total_vote === "NaN" ? "0" : total_vote;
+
+          const precinctName = document.getElementById("precinct-name");
+
+          precinctName.innerHTML = `Precinct ${precincts[0].properties.precinct_geo}`;
+
+          if (total_vote === 0) {
+            noVoterMessage.style.display = "block";
+            tooltipInfo.style.display = "none";
+            return;
+          } else {
+            noVoterMessage.style.display = "none";
+            tooltipInfo.style.display = "block";
+          }
+
+          let winner = gonzalez_vote > higgins_vote ? "Gonzalez" : "Higgins";
+          let win_margin =
+            gonzalez_vote > higgins_vote
+              ? gonzalez_vote - higgins_vote
+              : higgins_vote - gonzalez_vote;
+          let primary_leader = precincts[0].properties.winner;
+          let race = precincts[0].properties.race;
+          race = capitalizeFirstLetter(race);
+          race = race === "?" ? "" : race;
+          let foreign_born = precincts[0].properties.immigrant_prop;
+          foreign_born = foreign_born === "?" ? "" : foreign_born + "%";
+          let winner_color = winner === "Gonzalez" ? "#2171b5" : "#cb181d";
+          let text = `<tr><td><b>Total votes:</b></td><td>${total_vote}</td></tr>
+                      <tr><td><b>November winner:</b></td> <td>${primary_leader}</td></tr>
+                      <tr><td><b>Race of most residents:</b></td><td>${race}</td></tr>
+                      <tr><td><b>Proportion of immigrants:</b><td>${foreign_born}</td></tr>`;
+
+          const higginsHeader = document.querySelector(
+            '.tooltip-header[data-attribute="higgins"]'
+          );
+          const gonzalezHeader = document.querySelector(
+            '.tooltip-header[data-attribute="gonzalez"]'
+          );
+
+          if (winner === "Higgins") {
+            higginsHeader.innerHTML = `Higgins +${higgins_vote}%`;
+            gonzalezHeader.innerHTML = `Gonzalez`;
+          } else if (winner === "Gonzalez") {
+            higginsHeader.innerHTML = `Higgins`;
+            gonzalezHeader.innerHTML = `Gonzalez +${gonzalez_vote}%`;
+          }
+
+          const tooltipText = document.getElementById("tooltip-text");
+
+          tooltipText.innerHTML = text;
+
+          // setting width of bars
+
+          const tooltipWidth = width > 600 ? 320 : width * 0.9;
+
+          let gonzalez_width = (tooltipWidth / 100) * gonzalez_vote;
+          console.log(gonzalez_width);
+          console.log(tooltipWidth);
+          let higgins_width = (tooltipWidth / 100) * higgins_vote;
+
+          const higginsBar = document.querySelector(
+            '.election-bar[data-attribute="higgins"]'
+          );
+          const gonzalezBar = document.querySelector(
+            '.election-bar[data-attribute="gonzalez"]'
+          );
+
+          gonzalezBar.style.width = gonzalez_width + "px";
+          gonzalezBar.style.borderLeft = "1px solid black;";
+          higginsBar.style.width = higgins_width + "px";
+          higginsBar.style.borderRight = "1px solid black;";
+        });
+
+        map.getCanvas().style.cursor = "default";
+
+        map.fitBounds([
+          [-80.290726, 25.866359],
+          [-80.077336, 25.633064],
+        ]);
+      });
+    </script>
+  </body>
+</html>
