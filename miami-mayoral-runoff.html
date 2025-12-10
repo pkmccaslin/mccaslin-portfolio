@@ -78,11 +78,11 @@
           z-index: 0;
         }
 
-        #tooltip {
+        .tooltip {
           position: absolute;
           line-height: 1.2rem;
           width: 90vw;
-          padding: 1vh 2vw 0vh 2vw;
+          padding: 1vh 2vw 1vh 2vw;
           z-index: 1;
           bottom: 4vh;
         }
@@ -107,7 +107,7 @@
           margin-bottom: 5vh;
         }
 
-        #tooltip {
+        .tooltip {
           position: absolute;
           width: 320px;
           padding: 16px;
@@ -124,7 +124,7 @@
         }
       }
 
-      #tooltip {
+      .tooltip {
         display: none;
         flex-direction: column;
         border: 1px solid black;
@@ -134,7 +134,7 @@
         pointer-events: none;
       }
 
-      #precinct-name {
+      .precinct-name {
         font-weight: 700;
         font-size: 1.5rem;
         margin-top: 10px;
@@ -173,8 +173,9 @@
       }
 
       .median-text {
-        font-size: 1.2rem;
         align-self: center;
+
+        font-size: 1.2rem;
         color: black;
         margin-bottom: 8px;
       }
@@ -234,36 +235,45 @@
       <div id="landing">
         <h1 style="text-align: left">Eileen Higgins wins Miami mayor</h1>
         <h2 style="text-align: left">
-          Higgins won 59.5% of the vote, becoming the first Democrat to be elected Miami's mayor in almost 30 years.
+          Higgins won 59.5% of the vote, becoming the first Democrat to be
+          elected Miami's mayor in almost 30 years.
         </h2>
       </div>
       <div id="election-container">
         <div id="map"></div>
-        <div id="tooltip">
-          <div id="precinct-name"></div>
-          <div id="no-voter-message" class="tooltip-header" style="display: none;">No voters participated in this precinct.</div>
-          <div id="tooltip-info">
-            <div id="tooltip-header-container">
-              <div class="tooltip-header" data-attribute="higgins"></div>
-              <div class="tooltip-header" data-attribute="gonzalez"></div>
-            </div>
-            <div class="election-bar-container">
-              <div
-                class="election-bar"
-                data-attribute="higgins"
-                style="background-color: #3182bd"
-              ></div>
-              <div
-                class="election-bar"
-                data-attribute="gonzalez"
-                style="background-color: #de2d26"
-              ></div>
-            </div>
-            <div class="median-bar"></div>
-            <div class="median-text">50%</div>
-            <div id="tooltip-scroll">
-              <table id="tooltip-text"></table>
-            </div>
+        <div class="tooltip" id="voter-tooltip">
+          <div class="precinct-name"></div>
+          <!-- <div id="tooltip-info"> -->
+          <div id="tooltip-header-container">
+            <div class="tooltip-header" data-attribute="higgins"></div>
+            <div class="tooltip-header" data-attribute="gonzalez"></div>
+          </div>
+          <div class="election-bar-container">
+            <div
+              class="election-bar"
+              data-attribute="higgins"
+              style="background-color: #3182bd"
+            ></div>
+            <div
+              class="election-bar"
+              data-attribute="gonzalez"
+              style="background-color: #de2d26"
+            ></div>
+          </div>
+          <div class="median-bar"></div>
+          <div class="median-text">50%</div>
+          <div id="tooltip-scroll">
+            <table id="tooltip-text"></table>
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="tooltip" id="no-voter-tooltip" style="display: none;">
+          <div class="precinct-name"></div>
+          <div
+            id="no-voter-message"
+            class="tooltip-header"
+          >
+            No voters participated in this precinct.
           </div>
         </div>
         <!-- <div
@@ -341,12 +351,11 @@
         // });
 
         map.on("mousemove", (event) => {
-          const tooltip = document.getElementById("tooltip");
+          const tooltip = document.getElementById("voter-tooltip");
           const tooltipHeaderContainer = document.getElementById(
             "tooltip-header-container"
           );
-          let noVoterMessage = document.getElementById("no-voter-message");
-          let tooltipInfo = document.getElementById("tooltip-info");
+
           const precincts = map.queryRenderedFeatures(event.point, {
             layers: ["runoff-precincts"],
           });
@@ -374,17 +383,18 @@
           let total_vote = Number(precincts[0].properties.precinct_total);
           total_vote = total_vote === "NaN" ? "0" : total_vote;
 
-          const precinctName = document.getElementById("precinct-name");
+          const precinctName = document.querySelectorAll("precinct-name");
 
+          const noVoterTooltip = document.getElementById("no-voter-tooltip");
           precinctName.innerHTML = `Precinct ${precincts[0].properties.precinct_geo}`;
 
           if (total_vote === 0) {
-            noVoterMessage.style.display = "block";
-            tooltipInfo.style.display = "none";
+            noVoterTooltip.style.display = "block";
+            tooltip.style.display = "none";
             return;
           } else {
-            noVoterMessage.style.display = "none";
-            tooltipInfo.style.display = "block";
+            noVoterTooltip.style.display = "none";
+            tooltip.style.display = "flex";
           }
 
           let winner = gonzalez_vote > higgins_vote ? "Gonzalez" : "Higgins";
